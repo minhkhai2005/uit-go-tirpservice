@@ -8,11 +8,7 @@ from ..models.trip import TripStatus # Import Enum từ model
 # Dữ liệu cơ bản
 class TripBase(BaseModel):
     start_location_address: str
-    start_lat: Decimal
-    start_lng: Decimal
     end_location_address: str
-    end_lat: Decimal
-    end_lng: Decimal
 
 # Dữ liệu nhận vào khi tạo chuyến
 class TripCreate(TripBase):
@@ -26,8 +22,6 @@ class TripResponse(TripBase):
     driver_id: Optional[UUID] = None
     vehicle_id: Optional[UUID] = None
     status: TripStatus
-    estimated_fare: Optional[Decimal] = None
-    final_fare: Optional[Decimal] = None
     requested_at: datetime
     
     class Config:

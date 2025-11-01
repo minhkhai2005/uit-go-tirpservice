@@ -29,18 +29,11 @@ class Trip(Base):
     # THÔNG TIN ĐỊA ĐIỂM
     # ------------------
     start_location_address = Column(Text, nullable=False)
-    start_lat = Column(Numeric(10, 8), nullable=False)
-    start_lng = Column(Numeric(11, 8), nullable=False)
-    
     end_location_address = Column(Text, nullable=False)
-    end_lat = Column(Numeric(10, 8), nullable=False)
-    end_lng = Column(Numeric(11, 8), nullable=False)
 
     # ------------------
     # CHI TIẾT CHUYẾN ĐI
     # ------------------
-    estimated_fare = Column(Numeric(10, 2), nullable=True)
-    final_fare = Column(Numeric(10, 2), nullable=True)
     distance_km = Column(Numeric(6, 2), nullable=True)
     duration_min = Column(Numeric(6, 2), nullable=True)
 

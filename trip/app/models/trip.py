@@ -22,14 +22,8 @@ class Trip(Base):
     status = Column(Enum(TripStatus), nullable=False, default=TripStatus.requested, index=True)
 
     start_location_address = Column(Text, nullable=False)
-    start_lat = Column(Numeric(10, 8), nullable=False)
-    start_lng = Column(Numeric(11, 8), nullable=False)
     end_location_address = Column(Text, nullable=False)
-    end_lat = Column(Numeric(10, 8), nullable=False)
-    end_lng = Column(Numeric(11, 8), nullable=False)
 
-    estimated_fare = Column(Numeric(10, 2))
-    final_fare = Column(Numeric(10, 2))
     distance_km = Column(Numeric(6, 2))
     duration_min = Column(Numeric(6, 2))
 

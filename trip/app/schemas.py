@@ -19,13 +19,9 @@ class TripBase(BaseModel):
     
     # Dùng đúng tên trường và kiểu dữ liệu từ CSDL
     start_location_address: str
-    start_lat: float = Field(..., ge=-90, le=90)  # ge=lớn hơn hoặc bằng, le=nhỏ hơn hoặc bằng
-    start_lng: float = Field(..., ge=-180, le=180)
-    
+
     end_location_address: str
-    end_lat: float = Field(..., ge=-90, le=90)
-    end_lng: float = Field(..., ge=-180, le=180)
-    
+
     status: str = "requested" # CSDL của bạn mặc định là 'requested'
 
 # Schema dùng khi TẠO MỚI một chuyến đi
@@ -48,5 +44,29 @@ class TripResponse(TripBase):
 
     # Cấu hình này bảo Pydantic đọc dữ liệu
     # từ model SQLAlchemy (ví dụ: trip.id thay vì trip['id'])
+    class Config:
+        from_attributes = True
+
+
+from typing import List, Optional, Any
+
+class DriverInfo(BaseModel):
+    """Schema for driver information from driver service"""
+    id: UUID
+    name: Optional[str] = None
+    distance: Optional[float] = None
+    rating: Optional[float] = None
+    # Add other fields as needed based on driver service response
+    
+    class Config:
+        from_attributes = True
+
+
+class TripCreateResponse(BaseModel):
+    """Response when creating a new trip with nearby drivers info"""
+    trip: TripResponse
+    nearby_drivers: List[Any]  # Use Any or create a specific schema based on driver service response
+    passenger_location: dict
+    
     class Config:
         from_attributes = True
